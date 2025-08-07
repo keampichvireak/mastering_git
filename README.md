@@ -281,3 +281,20 @@ AND v_UpdateComplianceStatus.Status = 3
 
 ORDER BY 
     v_R_System.Name0
+
+SELECT 
+    R.Name0 AS 'Computer Name',
+    UI.ArticleID,
+    UI.BulletinID,
+    UI.Title,
+    UCS.Status
+FROM 
+    v_UpdateComplianceStatus UCS
+JOIN 
+    v_UpdateInfo UI ON UCS.CI_ID = UI.CI_ID
+JOIN 
+    v_R_System R ON UCS.ResourceID = R.ResourceID
+WHERE 
+    UCS.Status = 1
+ORDER BY 
+    R.Name0, UI.ArticleID
