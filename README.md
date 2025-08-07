@@ -261,3 +261,23 @@ USER SETTINGS
         High Mandatory Level
 
 PS C:\Users\Administrator.ICONIC>
+
+
+SELECT 
+    v_R_System.Name0 AS 'Computer Name',
+    v_UpdateInfo.Title,
+    v_UpdateInfo.ArticleID,
+    v_UpdateComplianceStatus.Status
+FROM 
+    v_UpdateInfo
+JOIN 
+    v_UpdateComplianceStatus ON v_UpdateInfo.CI_ID = v_UpdateComplianceStatus.CI_ID
+JOIN 
+    v_R_System ON v_UpdateComplianceStatus.ResourceID = v_R_System.ResourceID
+--WHERE 
+   -- v_UpdateInfo.ArticleID = '890830' -- <-- change to your KB
+   WHERE v_UpdateInfo.ArticleID = '890830'
+AND v_UpdateComplianceStatus.Status = 3
+
+ORDER BY 
+    v_R_System.Name0
